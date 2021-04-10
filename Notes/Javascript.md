@@ -6,7 +6,8 @@
   - [Inheritance and the prototype chain](#inheritance-and-the-prototype-chain)
   - [Concurrency model and event loop](#concurrency-model-and-event-loop)
   - [Asynchronous and synchronous](#asynchronous-and-synchronous) 
-  - [Promise](#promise) 
+  - [Promise](#promise)
+  - [DOM](#dom)
 
 ## Data and structure types
 #### Six Data Types:
@@ -118,7 +119,7 @@ function Tree(name) {
 }
 
 let myTree = new Tree('Redwood')
-console.log('theTree.constructor is ' + theTree.constructor)
+console.log('theTree.constructor is ' + myTree.constructor)
 ``` 
 This example displays the following output:
 ```
@@ -128,6 +129,26 @@ theTree.constructor is function Tree(name) {
 ```
 
 ### Inheritance
+#### Object inherits with creating a new prototype
+```
+...
+function Admin() {}
+Admin.prototype = Object.create(User.prototype);
+Admin.prototype.role = function() {
+    console.log('Admin.role')
+} 
+
+function Member() {}
+Member.prototype = Object.create(User.prototype);
+Member.prototype.role = function() {
+    console.log('Member.role')
+} 
+``` 
+Original prototype chain:
+![PrototypeChain](/assets/images/prototypechainoriginal.jpg)
+prototype chain after inheritance:
+![PrototypeChain](/assets/images/prototypechaincreate.jpg)
+
 #### Object inherits without dropping the original prototype   
 Example below shows how objects Admin and Member inherit their properties from User.
 
@@ -149,8 +170,6 @@ Member.prototype.role = function() {
     console.log('Member.role')
 } 
 ``` 
-Original prototype chain:
-![PrototypeChain](/assets/images/prototypechainoriginal.jpg)
 prototype chain after inheritance:
 ![PrototypeChain](/assets/images/prototypechainafter.jpg)
 
@@ -161,24 +180,6 @@ Member.prototype = User.prototype;
 ```
 It will cause User, Admin and Member share the same prototype so that unable to add prototype method for individual.
 ![PrototypeChain](/assets/images/prototypechainavoid.jpg)
-
-#### Object inherits with creating a new prototype
-```
-...
-function Admin() {}
-Admin.prototype = Object.create(User.prototype);
-Admin.prototype.role = function() {
-    console.log('Admin.role')
-} 
-
-function Member() {}
-Member.prototype = Object.create(User.prototype);
-Member.prototype.role = function() {
-    console.log('Member.role')
-} 
-``` 
-prototype chain after inheritance:
-![PrototypeChain](/assets/images/prototypechaincreate.jpg)
 
 
 ## Concurrency model and event loop
@@ -379,4 +380,5 @@ async function getOrdersAsync() {
     console.log(orders)
 }
 ```
-    
+
+## DOM
