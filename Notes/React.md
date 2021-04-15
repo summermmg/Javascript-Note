@@ -218,9 +218,9 @@ const addTodoAction = {
   * Loading state should usually be stored as an enum, like `'idle' | 'loading' | 'succeeded' | 'failed'`
 * **The Redux "Thunk" middleware lets us pass functions to `dispatch`**
   * "Thunk" functions let us write async logic ahead of time, without knowing what Redux store is being used
-  * A Redux thunk function receives `dispatch` and `getState` as arguments, and can dispatch actions like "this data was received from an API response"
+  * **A Redux thunk function receives `dispatch` and `getState` as arguments, and can dispatch actions like "this data was received from an API response"**
 * **Action creator functions encapsulate preparing action objects and thunks**
-  * Action creators can accept arguments and contain setup logic, and return the final action object or thunk function
+  * Action creators can accept arguments and contain setup logic, and **return the final action object or thunk function**
 * **Thunks can return promises from dispatch**
   * Components can wait for async thunks to complete, then do more work
  
