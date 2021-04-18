@@ -136,6 +136,14 @@ TCP and IP are the basics rules defining the internet.
 
 ### WebSockets
 > WebSocket is a protocol that allows for a persistent TCP connection between server and client so they can exchange data at any time.
+* WebSockets generally do not use XMLHttpRequest, and as such, headers are not sent every-time we need to get more information from the server. This, in turn, reduces the expensive data loads being sent to the server. 
+* WebSockets don’t automatically recover when connections are terminated – this is something you need to implement yourself, and is part of the reason why there are many client-side libraries in existence.
+
+### Long polling
+> long polling is a technique where the server elects to hold a client’s connection open for as long as possible, delivering a response only after data becomes available or a timeout threshold is reached.
+*  Depending on the server implementation, confirmation of message receipt by one client instance may also cause another client instance to never receive an expected message at all, as the server could mistakenly believe that the client has already received the data it is expecting.
+*  Long polling is a lot more intensive on the server.
+
 
 ### HTTP cookie & Web storage API
 An HTTP cookie is a small piece of data stored on the user's computer by the web browser while browsing a website.
@@ -179,6 +187,11 @@ Advantages:
 (If the certificate and the website policies mismatch, a user will get the notification as an unsecured connection and will ask your permission to proceed further.)
 * **Data Protection**
   HTTPS does not save any kind of data (or very limited) on the client system. So HTTPS ensures data protection.
+
+## `Socket.IO`
+Socket.IO is a library that enables real-time, bidirectional and event-based communication between the browser and the server.
+
+
 
 ## Reference
 * https://www.cyc2018.xyz/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/HTTP/HTTP.html#%E4%B8%80-%E3%80%81%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5

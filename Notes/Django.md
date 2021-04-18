@@ -1,5 +1,7 @@
 # Django DRF Review
 ## Table of contents
+  - [MVC](#mvc)
+  - [Django-MVT](#django-mvt)
   - [JSON Web Token](#json-web-token)
   - [Routers](#routers)
   - [Models](#models)
@@ -7,7 +9,25 @@
   - [Serializers](#serializers)
   - [Reference](#reference) 
 
+## MVC
+> Model–view–controller: a software design pattern commonly used for developing user interfaces.
+* **Model**
+The model is responsible for managing the data of the application. It responds to the request from the view and it also responds to instructions from the controller to update itself.
+* **View**
+It means presentation of data in a particular format, triggered by a controller's decision to present the data. They are script-based templating systems like JSP, ASP, PHP and very easy to integrate with AJAX technology.
+* **Controller**  
+The controller is responsible for responding to the user input and perform interactions on the data model objects. The controller receives the input, it validates the input and then performs the business operation that modifies the state of the data model.
 
+## Django-MVT
+> DJANGO MVC - MVT Pattern
+ 
+The **Model-View-Template (MVT)** is slightly different from MVC. In fact the main difference between the two patterns is that Django itself takes care of the Controller part (Software Code that controls the interactions between the Model and View), leaving us with the template. The template is a HTML file mixed with Django Template Language (DTL).
+
+The following diagram illustrates how each of the components of the MVT pattern interacts with each other to serve a user request −
+<div align="center"><img src="/assets/images/django_mvc_mvt_pattern.jpg" width="50%" /></div>  
+    
+from Django website:
+<img src="/assets/images/django_mvc_q&a.png" />
 
 ## JSON Web Token
 JSON Web Tokens consist of three parts separated by dots (.), which are:
