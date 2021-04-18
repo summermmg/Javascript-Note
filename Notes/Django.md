@@ -27,7 +27,7 @@ The following diagram illustrates how each of the components of the MVT pattern 
 <div align="center"><img src="/assets/images/django_mvc_mvt_pattern.jpg" width="50%" /></div>  
     
 from Django website:
-<img src="/assets/images/django_mvc_q&a.png" />
+![Djangomvc](/assets/images/django_mvc.PNG)
 
 ## JSON Web Token
 JSON Web Tokens consist of three parts separated by dots (.), which are:
