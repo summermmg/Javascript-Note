@@ -78,6 +78,10 @@ Each object has a private property which holds a link to another object called i
 
 That prototype object has a prototype of its own, and so on until an object is reached with null as its prototype. By definition, null has no prototype, and acts as the final link in this prototype chain.
 
+<div align="center"><img src="/assets/images/build_in_prototypechain.png" width="70%"  /></div>
+<div align="center"><img src="/assets/images/javascript_prototype_chain.png" width="90%"  /></div>
+<div align="center"><small>Images from <a>https://chamikakasun.medium.com/javascript-prototype-and-prototype-chain-explained-fdc2ec17dd04</a></small></div>  
+
 Here is an simple example:
 ```
 //define a Function object
@@ -85,9 +89,7 @@ function User() {}
 //create an object with constructor function
 let user1 = new User()  
 ``` 
-See prototype chain below:
-![PrototypeChain](/assets/images/prototypechainexample.jpg)
-
+<div align="center"><img src="/assets/images/prototypechain_example.png" width="90%"  /></div>
 example code: 
 ```
 User.prototype.show = function() {
@@ -130,10 +132,11 @@ theTree.constructor is function Tree(name) {
 
 ### Inheritance
 #### Object inherits with creating a new prototype
+The `Object.create()` method creates a new object, using an existing object as the prototype of the newly created object.
 ```
 ...
 function Admin() {}
-Admin.prototype = Object.create(User.prototype);
+Admin.prototype = Object.create(User.prototype);  
 Admin.prototype.role = function() {
     console.log('Admin.role')
 } 
