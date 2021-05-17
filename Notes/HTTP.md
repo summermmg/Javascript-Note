@@ -170,6 +170,16 @@ Example:
  Solution: 
  *CORS allows servers to specify certain trusted ‘origins’ they are willing to permit requests from. Origins are defined as the combination of protocol (http or https), host (a domain like `www.example.com` or an IP address) and port. Browsers which implement the CORS policy will include a HTTP header called ‘Origin’ in requests made with AJAX, including above information the value.*
 
+#### How to avoid CORS in development environment
+Solution:
+* Proxy
+> A proxy is a server or a service which can introduce additional layers in our communication to obfuscate or modify content, based on the configuration. (middleman)
+*Add proxy configuration in the webpack dev server* 
+#### How to avoid CORS in production environment
+Solutions:
+* Run frontend and backend API inside the same web server. (Serve frontend app as static files in Express server)
+* Set up a gateway or a proxy in front to serve from a single domain.   
+
 ### SSL and TLS
 * `SSL(Secure Sockets Layer)`: the old standard security technology for creating an encrypted network link between a server and client, ensuring all data passed is private and secure.   
 * `TLS(Transport Layer Security)`: modern way of SSL
@@ -197,3 +207,5 @@ Socket.IO is a library that enables real-time, bidirectional and event-based com
 * https://www.cyc2018.xyz/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/HTTP/HTTP.html#%E4%B8%80-%E3%80%81%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5
 * https://www.pcskull.com/https-instead-of-http-to-secure-website/
 * https://medium.com/@electra_chong/what-is-cors-what-is-it-used-for-308cafa4df1a
+* https://blog.bitsrc.io/how-and-why-you-should-avoid-cors-in-single-page-apps-db25452ad2f8
+* https://levelup.gitconnected.com/overview-of-proxy-server-and-how-we-use-them-in-react-bf67c062b929
