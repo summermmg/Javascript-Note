@@ -43,6 +43,19 @@ function Counter({initialCount}) {
   );
 }
 ```
+
+#### Push element inside useState array
+
+```js
+const [theArray, setTheArray] = useState(initialArray);
+
+// callback form
+setTheArray(oldArray => [...oldArray, newElement])
+
+// update array in handlers (click)  
+setTheArray([...theArray, newElement]);
+```
+
 ### Effect Hook
 You’ve likely performed data fetching, subscriptions, or manually changing the DOM from React components before. We call these operations “side effects” because they can affect other components and can’t be done during rendering. **Put 'side effect' operations in useEffect hook.** 
 >By default, React runs the effects after every render — including the first render. but you can choose to fire them only when certain values have changed.
