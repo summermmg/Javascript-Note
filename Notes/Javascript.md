@@ -47,12 +47,14 @@ A closure gives you access to an outer function’s scope from an inner function
 Nearly all objects in JavaScript are instances of Object (includes Function); a typical object inherits properties (including methods) from **Object.prototype**, although these properties may be overridden.
 * Create object using the Object() constructor
 
-```
+```js
 new Object()
 new Object(value)
 ```
+
 * Create object using object initializer 
-```
+
+```js
 const person = {
   isHuman: true,
   printIntroduction: function() {
@@ -65,10 +67,13 @@ const me = Object.create(person);
 me.name = 'Summer'; // "name" is a property set on "me", but not on "person"
 me.isHuman = true; // inherited properties can be overwritten
 ```
+
 * Create object using literal
-```
+
+```js
 const object = { a: 'foo', b: 42, c: {} };
 ```
+
 ### Function (构造函数)
 Every JavaScript function is actually a Function object. This can be seen with the code (function(){}).constructor === Function, which returns true.     
 
@@ -83,15 +88,18 @@ That prototype object has a prototype of its own, and so on until an object is r
 <div align="center"><small>Images from <a>https://chamikakasun.medium.com/javascript-prototype-and-prototype-chain-explained-fdc2ec17dd04</a></small></div>  
 
 Here is an simple example:
-```
+
+```js
 //define a Function object
 function User() {} 
 //create an object with constructor function
 let user1 = new User()  
 ``` 
+
 <div align="center"><img src="/assets/images/prototypechain_example.png" width="90%"  /></div>
 example code: 
-```
+
+```js
 User.prototype.show = function() {
     console.log('show detail');
 }
@@ -106,7 +114,8 @@ User.view(); //'view user info'
 #### Object.prototype.constructor
 The constructor property returns a reference to the Object constructor function that created the instance object.
 The `new` keyword **constructs and returns** an object (**instance**) of a constructor function.
-```
+
+```js
 let o = {}
 o.constructor === Object // true
 let o = new Object
@@ -114,8 +123,10 @@ o.constructor === Object // true
 let a = new Array
 a.constructor === Array // true
 ```
+
 another example:
-```
+
+```js
 function Tree(name) {
   this.name = name
 }
@@ -123,8 +134,10 @@ function Tree(name) {
 let myTree = new Tree('Redwood')
 console.log('theTree.constructor is ' + myTree.constructor)
 ``` 
+
 This example displays the following output:
-```
+
+```js
 theTree.constructor is function Tree(name) {
   this.name = name
 }
@@ -133,7 +146,8 @@ theTree.constructor is function Tree(name) {
 ### Inheritance
 #### Object inherits with creating a new prototype
 The `Object.create()` method creates a new object, using an existing object as the prototype of the newly created object.
-```
+
+```js
 ...
 function Admin() {}
 Admin.prototype = Object.create(User.prototype);  
@@ -147,6 +161,7 @@ Member.prototype.role = function() {
     console.log('Member.role')
 } 
 ``` 
+
 Original prototype chain:
 ![PrototypeChain](/assets/images/prototypechainoriginal.jpg)
 prototype chain after inheritance:
@@ -155,7 +170,7 @@ prototype chain after inheritance:
 #### Object inherits without dropping the original prototype   
 Example below shows how objects Admin and Member inherit their properties from User.
 
-```
+```js
 function User() {}
 User.prototype.name = function() {
     console.log('user.name');
@@ -173,14 +188,17 @@ Member.prototype.role = function() {
     console.log('Member.role')
 } 
 ``` 
+
 prototype chain after inheritance:
 ![PrototypeChain](/assets/images/prototypechainafter.jpg)
 
 Notice* Avoid code below:
-```
+
+```js
 Admin.prototype = User.prototype;
 Member.prototype = User.prototype;
 ```
+
 It will cause User, Admin and Member share the same prototype so that unable to add prototype method for individual.
 ![PrototypeChain](/assets/images/prototypechainavoid.jpg)
 
@@ -202,7 +220,8 @@ When deal with complecated task, using synchrnous code will cause blocking (or b
 
 Below are two examples of asynchronous code block: 
 * ##### Process as Task:
-    ```
+ 
+    ```js
     function task(num) {
         return new Promise(resolve => {
             setTimeout(() => {
@@ -218,7 +237,8 @@ Below are two examples of asynchronous code block:
     console.log('synchronous code');
     ```
 * ##### Process as Microtask:
-    ```
+ 
+    ```js
     async function task(num) {
         let res = await Promise.resolve().then( _ => {
             let count = 0;
@@ -240,7 +260,8 @@ Below are two examples of asynchronous code block:
 
 * Basic syntax
 `then` will be executed after `promise` status updated. The first function will be executed after `promise` status changed from `pending` to `fulfilled`. The second function will be executed after `promise` status changed from `pending` to `rejected` (not recommend to handle `reject` in `then`).     
-```
+
+```js
 const promise = new Promise((resolve, reject) => {
     resolve('success')  //either resolve or reject
     //reject('fail') 
@@ -253,8 +274,10 @@ const promise = new Promise((resolve, reject) => {
     }
 )
 ```
+
 * `then` will process the `rejected` or `resolved` from prior `promise`. However, each `then` is also a `promise` which by default pass a `fullfilled` status to the next.
-```
+ 
+```js
 new Promise((resolve, reject) => {
     reject('failed')
 }).then(
@@ -274,8 +297,10 @@ new Promise((resolve, reject) => {
   received fullfilled status
   received fullfilled status
 ```
+
 * `catch` is recommend to use for handle rejected status. 
-```
+ 
+```js
 new Promise((resolve, reject) => {
   reject(new Error('request failed));
 })
@@ -285,7 +310,8 @@ new Promise((resolve, reject) => {
   console.log(error);
 });
 ``` 
-```
+
+```js
 new Promise((resolve, reject) => {
   resolve();
 })
@@ -299,6 +325,7 @@ new Promise((resolve, reject) => {
   console.log(msg);
 });
 ```
+
 ### AJAX 
 (Asynchronous JavaScript and XML)
 The `XMLHttpRequest` API is the core of `Ajax`. `Ajax` is used for making asynchronous request to a server to transfer data, and load any returned data into the page.
@@ -307,7 +334,8 @@ The `XMLHttpRequest` API is the core of `Ajax`. `Ajax` is used for making asynch
 * Request and transfer happen in the back
 * Only the necessary area of page refresh when the browser receives new data. 
 #### Create an `Ajax` using `promise` and consume it
-```
+
+```js
 function ajax(url) {
   return new Promise((resolve, reject) => {
     let xhr = new XMLHttpRequest();
@@ -329,8 +357,10 @@ ajax("fakeapi/user?name=Summer")
   console.log(order);
 });
 ```
+
 #### Async load image
-```
+
+```js
 function loadImage(file) {
   return new Promise((resolve, reject) => {
     const image = new Image();
@@ -348,10 +378,11 @@ loadImage("images/houdunren.png").then(image => {
   console.log('style applied');
 });
 ```
+
 ### async/await
 `async/await` is recommended for creating `promise`.
 
-```
+```js
 async function task(message) {
   return new Promise(resolve => {
     setTimeout(() => {
@@ -367,8 +398,10 @@ async function run() {
 }
 run();
 ```
+
 Examples of using `then` and `async/await`:  
-```
+
+```js
 function getOrders() {
     ajax("fakeapi/user?name=Summer")
     .then(user =>ajax(`fakeapi/order?id=${user["id"]}`))
