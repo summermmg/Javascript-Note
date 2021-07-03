@@ -2,11 +2,13 @@
 ## Table of contents
   - [Data and structure types](#data-and-structure-types)
   - [Scope and closure](#scope-and-closure) 
+  - [ES6](#es6)
   - [Foundamental Objects](#foundamental-objects )
   - [Inheritance and the prototype chain](#inheritance-and-the-prototype-chain)
   - [Concurrency model and event loop](#concurrency-model-and-event-loop)
   - [Asynchronous and synchronous](#asynchronous-and-synchronous) 
   - [Promise](#promise)
+  - [Class](#class)
   - [DOM](#dom)
 
 ## Data and structure types
@@ -36,6 +38,34 @@ A closure gives you access to an outer function’s scope from an inner function
     Closures are created every time a function is created, at function creation time.
 * ##### Purpose:
     Global variables can be made local (private) with closures.
+
+## ES6
+
+```js
+const array1 = [1, 4, 9, 16];
+// automatically return x*2 for each element x
+const map1 = array1.map(x => x * 2);
+
+// wrong
+const map1 = array1.map(x => (x * 2));
+
+```
+
+```js
+const array1 = [1, 4, 9, 16];
+
+// In this case, nothing return. value of all x are 'undefined'   
+array1 = array1.map(function(x) {
+  x = x*2;
+})
+
+// correct
+array1 = array1.map(function(x) {
+  x = x*2;
+  return x;
+})
+
+```
 
 ## Foundamental Objects 
 * Object
@@ -415,6 +445,49 @@ async function getOrdersAsync() {
     let orders = await(ajax(`fakeapi/order?id=${user["id"]}`)) 
     console.log(orders)
 }
+```
+
+## Class
+```js
+// Code snippet of creating a Lesson class
+const data = [
+    { name: "js", price: 100},
+    { name: "mysql", price: 212},
+    { name: "vue.js", price: 98}
+];
+
+class Lesson {
+    constructor(data) {
+        this.model = data;
+    }
+
+    // 从model中获取price
+    // 对于单个对象操作 
+    price() {
+        return this.model.price;
+    } 
+
+    name() {
+        return this.model.name;
+    }
+
+    // 非对于单个对象操作推荐使用静态方法
+    static createBatch(data) {
+        return data.map(item => new Lesson(item)); 
+    }
+
+    static maxPrice(data) {
+        return data.sort((a,b) => b.price() - a.price())[0];
+    } 
+
+    static totalPrice(data) {
+        return data.reduce((prev,curr) => prev += curr.price(),0);
+    } 
+} 
+
+let lessons = Lesson.createBatch(data);
+console.dir(Lesson.maxPrice(lessons).name());
+console.log(Lesson.totalPrice(lessons))
 ```
 
 ## DOM
